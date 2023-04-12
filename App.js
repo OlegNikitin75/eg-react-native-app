@@ -1,20 +1,45 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useCallback, useState } from 'react'
+import { SafeAreaView, StatusBar } from 'react-native'
+import { useFonts } from 'expo-font'
+import * as SplashScreen from 'expo-splash-screen'
+import 'react-native-gesture-handler'
+import { AppNavigator } from './app/modules/navigation/app-navigator'
+import { AuthProvider } from './app/modules/auth'
 
-export default function App() {
+let ignore = SplashScreen.preventAutoHideAsync()
+
+function App() {
+
+  const [fontsLoaded] = useFonts({
+    'Play-Regular': require('./app/assets/fonts/Play-Regular.ttf'),
+    'Play-Bold': require('./app/assets/fonts/Play-Bold.ttf')
+  })
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync()
+    }
+  }, [fontsLoaded])
+  if (!fontsLoaded) {
+    return null
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    <AuthProvider>
+      <StatusBar
+        translucent
+        barStyle='light-content'
+      ></StatusBar>
+      <SafeAreaView
+        onLayout={onLayoutRootView}
+        style={{
+          flex: 1,
+          marginTop: StatusBar.currentHeight
+        }}
+      >
+        <AppNavigator />
+      </SafeAreaView>
+    </AuthProvider>
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App

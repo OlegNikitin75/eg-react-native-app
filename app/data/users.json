@@ -1,0 +1,30 @@
+[
+  {
+    "fullName": "Олег Никитин",
+    "password": null,
+    "status": "teacher",
+    "role": "admin",
+    "group": null
+  },
+  {
+    "fullName": "Ольга Суханова",
+    "password": null,
+    "status": "teacher",
+    "role": "user",
+    "group": null
+  },
+  {
+    "fullName": "Дарья Никитина",
+    "password": null,
+    "status": "student",
+    "role": "user",
+    "group": "ЭМ-11"
+  },
+  {
+    "fullName": "Иван Жевнов",
+    "password": null,
+    "status": "student",
+    "role": "user",
+    "group": "ЭТ-11"
+  }
+]
