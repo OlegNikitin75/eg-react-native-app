@@ -1,19 +1,22 @@
-import React from 'react'
-import { Image, View } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { View, ActivityIndicator } from 'react-native'
 
-const Loader = () => {
+export const Loader = () => {
+  const COLORS = ['#BDB2FF', '#A0C4FF']
+  const [color, setColor] = useState(COLORS[0])
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setColor((color) => color === COLORS[0] ? COLORS[1] : COLORS[0])
+    }, 500)
+    return () => clearInterval(id)
+  }, [])
+
   return (
-    <View className='absolute inset-0 bg-blackColor/60 items-center justify-center'>
-      <View className='w-16 h-16'>
-        <Image className='w-full h-full object-cover animate-spin'
-               source={require('../../assets/images/load-icon.png')}
-        />
-      </View>
+    <View className='absolute z-50 inset-0 flex items-center justify-center bg-bgColor/80'>
 
+      <ActivityIndicator size='large' color={color} />
     </View>
-
   )
 }
 
-
-export default Loader

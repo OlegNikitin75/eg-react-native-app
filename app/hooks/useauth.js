@@ -23,7 +23,6 @@ export const useAuth = () => {
         const users = doc.data()[role]
         users.forEach(user => {
           const fullName = `${user.firstName} ${user.lastName}`.toLowerCase().trim()
-          console.log(fullName)
           if (fullName === nameMod && user.password === passwordMod) {
             if (role === 'teachers' || 'students') {
               login('user')
