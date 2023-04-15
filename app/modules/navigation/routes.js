@@ -16,10 +16,15 @@ import {
   SelectTask
 } from '../../screens'
 import HomeTabNavigator from './home-tab-navigator'
-import { AdminGroups, AdminMain, AdminTasks, AdminTeachers } from '../../screens/admin'
+import AdminMain from '../../screens/admin/admin-main'
+import AdminStudents from '../../screens/admin/admin-students'
+import AdminTeachers from '../../screens/admin/admin-teachers'
+import AdminTasks from '../../screens/admin/admin-tasks'
+import AdminAddStudent from '../../screens/admin/admin-add-student'
 
 export const routes = [
   {
+
     name: 'Home',
     component: HomeTabNavigator
   },
@@ -85,11 +90,15 @@ export const tabBottomRoutes = [
 export const routesAdmin = [
   {
     name: 'AdminMain',
-    component: AdminMain
+    component: AdminMain,
+    isDelete: null
   },
   {
-    name: 'AdminGroups',
-    component: AdminGroups
+
+    name: 'AdminStudents',
+    component: AdminStudents,
+    title: 'Студенты',
+    isDelete: true
   },
   {
     name: 'AdminTeachers',
@@ -98,6 +107,13 @@ export const routesAdmin = [
   {
     name: 'AdminTasks',
     component: AdminTasks
+  }
+  ,
+  {
+    name: 'AdminAddStudent',
+    component: AdminAddStudent,
+    title: 'Новый студент',
+    isDelete: false
   }
 
 ]

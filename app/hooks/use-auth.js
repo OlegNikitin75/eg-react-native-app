@@ -1,7 +1,7 @@
-import { AuthContext } from '../modules/auth'
 import { useContext, useState } from 'react'
 import { collection, getDocs } from 'firebase/firestore'
 import { db } from '../../firebaseInit'
+import { AuthContext } from '../modules/auth/context/auth-context'
 
 export const useAuth = () => {
   const [name, setName] = useState('')
@@ -40,6 +40,7 @@ export const useAuth = () => {
       })
     } catch (e) {
       setError('Что-то пошло не так. Повторите попытку')
+
     } finally {
       setLoading(false)
     }
@@ -65,8 +66,11 @@ export const useAuth = () => {
           getData('students', nameMod, passwordMod).then(res => {
           })
           break
+        default:
+          setError('Вы ввели неправильное имя или пароль')
+          closeError()
       }
     }
   }
-  return { handleLogin, error, setError, name, setName, password, setPassword, loading }
+  return { handleLogin, error, name, setName, password, setPassword, loading }
 }

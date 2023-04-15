@@ -1,12 +1,15 @@
 import React from 'react'
 import { Text, TouchableOpacity } from 'react-native'
-import { ArrowSvgComponent } from '../icons/'
+import { ArrowBackSvgComponent } from '../icons/'
+
 
 export const AppLink = () => {
+
+
   return (
-    <TouchableOpacity>
-      <ArrowSvgComponent />
-      <Text className="text-primary text-xs">Назад</Text>
+    <TouchableOpacity className='flex-row items-center py-4'>
+      <ArrowBackSvgComponent />
+      <Text className='text-primary text-xs ml-2' style={{ fontFamily: 'Play-Regular' }}>Назад</Text>
     </TouchableOpacity>
   )
 }

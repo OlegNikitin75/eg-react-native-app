@@ -1,25 +1,22 @@
 import React from 'react'
 import { ImageBackground, KeyboardAvoidingView, Platform, Text, View } from 'react-native'
-import { AppButton } from '../../components'
-import { Field } from '../../modules/auth'
+import { AppButton, AppField, FieldError } from '../../components'
 import {
   LockSvgComponent,
   UserSvgComponent
 } from '../../components/icons'
-import { useAuth } from '../../hooks/useauth'
+import { useAuth } from '../../hooks/use-auth'
 import { Loader } from '../../components/loader/loader'
 
 const Login = () => {
 
   const { handleLogin, error, name, setName, password, setPassword, loading } = useAuth()
-
   return (
 
     <View className='relative bg-secondary flex-1'>
       {loading && <Loader />}
-      {error && <Text style={{ fontFamily: 'Play-Bold' }}
-                      className={`${error ? 'top-0' : '-top-full'} 
-                      absolute w-full text-center text-lg z-20 p-3 bg-red-500 text-whiteColor`}>{error}</Text>}
+      {error && <FieldError>{error}</FieldError>}
+
       <ImageBackground
         source={require('../../assets/images/bg-login.jpg')}
         className='w-full h-full object-cover'
@@ -37,22 +34,22 @@ const Login = () => {
             Для входа в приложение введите Ваше имя и фамилию и пароль. Если Вы
             забыли пароль, обратитесь к преподавателю.
           </Text>
-          <Field
+          <AppField
             label='Введите имя и фамилию'
             placeholder='Имя Фамилия'
             value={name}
             onChangeText={setName}
           >
             <UserSvgComponent />
-          </Field>
-          <Field
+          </AppField>
+          <AppField
             label='Введите пароль'
             placeholder='Пароль'
             value={password}
             onChangeText={setPassword}
           >
             <LockSvgComponent />
-          </Field>
+          </AppField>
           <AppButton
             title='Войти'
             onPress={handleLogin}

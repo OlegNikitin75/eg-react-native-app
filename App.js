@@ -1,10 +1,10 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback } from 'react'
 import { SafeAreaView, StatusBar } from 'react-native'
 import { useFonts } from 'expo-font'
 import * as SplashScreen from 'expo-splash-screen'
 import 'react-native-gesture-handler'
 import { AppNavigator } from './app/modules/navigation/app-navigator'
-import { AuthProvider } from './app/modules/auth'
+import { AuthProvider } from './app/modules/auth/context/auth-context'
 
 let ignore = SplashScreen.preventAutoHideAsync()
 
