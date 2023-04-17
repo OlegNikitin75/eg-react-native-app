@@ -40,7 +40,10 @@ const Login = () => {
             value={name}
             onChangeText={setName}
           >
-            <UserSvgComponent />
+            <View className='absolute left-3 top-3.5 z-10'>
+              <UserSvgComponent />
+            </View>
+
           </AppField>
           <AppField
             label='Введите пароль'
@@ -48,7 +51,9 @@ const Login = () => {
             value={password}
             onChangeText={setPassword}
           >
-            <LockSvgComponent />
+            <View className='absolute left-3 top-3.5 z-10'>
+              <LockSvgComponent />
+            </View>
           </AppField>
           <AppButton
             title='Войти'

@@ -8,18 +8,18 @@ export const AppField = props => {
       {label &&
         <Text style={{ fontFamily: 'Play-Bold' }}
               className={`
-              ${labelColor ? labelColor : null}
+              ${labelColor ? labelColor : 'text-bgColor'}
                text-base mb-2 pl-5`}>
           {label}
         </Text>
       }
       <View className='relative'>
-        <View className='z-10 absolute left-2 top-3.5'>{props.children}</View>
+        {props.children}
         <TextInput
           onChangeText={onChangeText}
           value={value}
           placeholder={placeholder}
-          placeholderTextColor={`${bg ? '#6C757D' : null}`}
+          placeholderTextColor={`${bg ? '#6C757D' : 'black'}`}
           style={{ fontFamily: 'Play-Regular' }}
           className={`
           ${bg ? bg : 'bg-white'} 

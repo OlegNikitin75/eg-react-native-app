@@ -1,14 +1,15 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Text, TouchableOpacity } from 'react-native'
 
-export const AppButtonOption = ({
-                                  name,
-                                  width,
-                                  height,
-                                  bg,
-                                  color,
-                                  onPress
-                                }) => {
+export const AppButtonOption = props => {
+  const {
+    name,
+    width,
+    height,
+    bg,
+    color,
+    onPress
+  } = props
   return (
     <TouchableOpacity
       onPress={() => onPress()}
@@ -28,6 +29,7 @@ export const AppButtonOption = ({
       >
         {name}
       </Text>
+      {props.children}
     </TouchableOpacity>
   )
 }

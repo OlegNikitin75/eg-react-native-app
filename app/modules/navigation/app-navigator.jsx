@@ -7,8 +7,6 @@ import { AuthContext } from '../auth/context/auth-context'
 
 export const AppNavigator = () => {
   const { userRole } = useContext(AuthContext)
-  console.log(userRole)
-
   return (
     <NavigationContainer>
       {/*{userRole !== null && userRole === 'admin' ?*/}

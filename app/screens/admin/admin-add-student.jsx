@@ -34,9 +34,10 @@ const AdminAddStudent = () => {
                   label='Фамилия студента'
                   placeholder='Введите фамилию'
                   onChangeText={(text) => setLastName(text)}
-
         >
-          <UserLightSvgComponent />
+          <View className='absolute left-3 top-3.5 z-10'>
+            <UserLightSvgComponent />
+          </View>
         </AppField>
       </View>
       <View className='mb-3'>
@@ -45,7 +46,11 @@ const AdminAddStudent = () => {
                   label='Имя студента'
                   placeholder='Введите имя'
                   onChangeText={(text) => setFirstName(text)}>
-          <UserLightSvgComponent />
+
+          <View className='absolute left-3 top-3.5 z-10'>
+            <UserLightSvgComponent />
+          </View>
+
         </AppField>
       </View>
       <View className='mb-3'>
@@ -54,7 +59,10 @@ const AdminAddStudent = () => {
                   label='Учебная группа'
                   placeholder='Введите группу'
                   onChangeText={(text) => setGroup(text)}>
-          <UsersSvgComponent />
+          <View className='absolute left-3 top-3.5 z-10'>
+            <UsersSvgComponent />
+          </View>
+
         </AppField>
       </View>
       <View className='mb-3'>
@@ -63,8 +71,10 @@ const AdminAddStudent = () => {
                   label='Пароль'
                   placeholder='Пароль'
                   value={userPassword}>
+          <View className='absolute left-3 top-3.5 z-10'>
+            <LockLightSvgComponent />
+          </View>
 
-          <LockLightSvgComponent />
         </AppField>
       </View>
       <View>
