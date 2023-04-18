@@ -9,7 +9,6 @@ export const useFetchData = () => {
   const [error, setError] = useState('')
   const [userData, setUserData] = useState([])
   const [fullData, setFullData] = useState([])
-  const [query, setQuery] = useState('')
 
   const getData = async (role) => {
     try {
@@ -30,14 +29,14 @@ export const useFetchData = () => {
     setUserData(data)
     setFullData(data)
   }, [data])
+
   const handleSearch = (text) => {
-    setQuery(text)
     const filteredData = fullData.filter(item => {
-      return (item.firstName.toLowerCase().includes(query.toLowerCase()) ||
-        item.lastName.toLowerCase().includes(query.toLowerCase()) ||
-        item.group.toLowerCase().includes(query.toLowerCase()))
+      return (item.firstName.toLowerCase().includes(text.toLowerCase()) ||
+        item.lastName.toLowerCase().includes(text.toLowerCase()) ||
+        item.group.toLowerCase().includes(text.toLowerCase()))
     })
     setUserData(filteredData)
   }
-  return { getData, handleSearch, data, userData, error, loading, setQuery, query, setUserData }
+  return { getData, handleSearch, data, userData, error, loading, setUserData, setFullData }
 }

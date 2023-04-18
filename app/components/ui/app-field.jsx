@@ -2,7 +2,7 @@ import React from 'react'
 import { Text, TextInput, View } from 'react-native'
 
 export const AppField = props => {
-  const { label, labelColor, value, onChangeText, placeholder, bg } = props
+  const { label, labelColor, value, onChangeText, placeholder, bg, editable } = props
   return (
     <View className='mb-1.5'>
       {label &&
@@ -18,6 +18,7 @@ export const AppField = props => {
         <TextInput
           onChangeText={onChangeText}
           value={value}
+          editable={editable}
           placeholder={placeholder}
           placeholderTextColor={`${bg ? '#6C757D' : 'black'}`}
           style={{ fontFamily: 'Play-Regular' }}
