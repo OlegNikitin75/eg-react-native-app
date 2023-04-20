@@ -65,7 +65,7 @@ const AdminStudents = ({ navigation }) => {
       </View>
       <View className='mt-auto'>
         <AppButtonOption name='Добавить студента' bg='bg-primary' color='text-black' height='h-16'
-                         onPress={() => navigation.navigate(AdminAddStudent)} />
+                         onPress={() => navigation.navigate('AdminAddStudent')} />
       </View>
     </View>
 

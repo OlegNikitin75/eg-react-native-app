@@ -22,6 +22,7 @@ import AdminTeachers from '../../screens/admin/admin-teachers'
 import AdminTasks from '../../screens/admin/admin-tasks'
 import AdminAddStudent from '../../screens/admin/admin-add-student'
 import AdminScreenMessage from '../../screens/admin/admin-screen-message'
+import AdminAddTeacher from '../../screens/admin/admin-add-teacher'
 
 export const routes = [
   {
@@ -121,6 +122,15 @@ export const routesAdmin = [
     name: 'AdminAddStudent',
     component: AdminAddStudent,
     title: 'Новый студент',
+    isDelete: false,
+    back: true,
+    isHeader: true
+  }
+  ,
+  {
+    name: 'AdminAddTeacher',
+    component: AdminAddTeacher,
+    title: 'Новый преподаватель',
     isDelete: false,
     back: true,
     isHeader: true

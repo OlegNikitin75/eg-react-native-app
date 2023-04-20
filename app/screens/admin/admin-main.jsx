@@ -1,4 +1,4 @@
-import React, { useContext} from 'react'
+import React, { useContext } from 'react'
 import { View } from 'react-native'
 import { AppButtonOption } from '../../components/ui/app-button-option'
 import AdminStudents from './admin-students'
@@ -12,10 +12,10 @@ const AdminMain = ({ navigation }) => {
     <View className='bg-bgColor flex-1 p-3'>
       <View className='flex-col justify-between gap-y-2'>
         <View>
-          <AppButtonOption name='Студенты' onPress={() => navigation.navigate(AdminStudents)} />
+          <AppButtonOption name='Студенты' onPress={() => navigation.navigate('AdminStudents')} />
         </View>
         <View>
-          <AppButtonOption name='Преподаватели' />
+          <AppButtonOption name='Преподаватели' onPress={() => navigation.navigate('AdminTeachers')} />
         </View>
         <View>
           <AppButtonOption name='Задания' />
