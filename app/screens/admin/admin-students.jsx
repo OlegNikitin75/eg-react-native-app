@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { FlatList, Text, View } from 'react-native'
+import { useIsFocused } from '@react-navigation/native'
 import { UserSvgComponent } from '../../components/icons'
 import { AppField, AppListItem, FieldError } from '../../components'
 import { AppButtonOption } from '../../components/ui/app-button-option'
@@ -19,12 +20,13 @@ const AdminStudents = ({ navigation }) => {
     loading,
     text
   } = useFetchData()
+
+  const isFocused = useIsFocused()
   useEffect(() => {
     getData('students').then(() => {
       console.log('Данные получены')
     })
-  }, [])
-
+  }, [isFocused])
 
   const [activeDeleteMode] = useDeleteStore(state => [state.activeDeleteMode])
 
@@ -58,7 +60,7 @@ const AdminStudents = ({ navigation }) => {
               </View>
               {activeDeleteMode && <AppButtonDeleteItem />}
             </AppListItem>}
-          keyExtractor={item => item.id}
+          keyExtractor={item => item.password}
         />
       </View>
       <View className='mt-auto'>

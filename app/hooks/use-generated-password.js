@@ -29,7 +29,7 @@ export const useGeneratedPassword = () => {
       randomNumber < 0.5 ? genPassword(0, 10, role) : genPassword(0, 26, role)
     }
   }
-  return { getRandomNumber, userPassword }
+  return { getRandomNumber, userPassword, setUserPassword, password }
 }
 
 

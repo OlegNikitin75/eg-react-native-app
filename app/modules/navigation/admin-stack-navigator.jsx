@@ -13,7 +13,7 @@ const Stack = createStackNavigator()
 export const AdminStackNavigator = () => {
   const { nameAdmin, setName, loading, error } = useSetNameAdmin()
   useEffect(() => {
-    setName().then(res => {
+    setName().then(() => {
     })
   }, [])
 
@@ -26,13 +26,10 @@ export const AdminStackNavigator = () => {
           height: 70,
           shadowColor: 'transparent',
           elevation: 0
-
-
         },
         headerTintColor: '#CAFFBF',
         headerTitleAlign: 'center',
         headerBackTitle: 'Назад',
-
         headerBackTitleStyle: {
           fontSize: 12,
           color: 'red'
@@ -41,9 +38,13 @@ export const AdminStackNavigator = () => {
     >
       {routesAdmin.map(route => (
         <Stack.Screen
+
           options={{
+            headerShown: route.isHeader,
             headerBackImage: () => {
-              return <ButtonBackSvgComponent />
+              if (route.back) {
+                return <ButtonBackSvgComponent />
+              }
             },
             headerTitle: () => {
               if (route.title) {

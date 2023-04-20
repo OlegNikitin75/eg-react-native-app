@@ -21,6 +21,7 @@ import AdminStudents from '../../screens/admin/admin-students'
 import AdminTeachers from '../../screens/admin/admin-teachers'
 import AdminTasks from '../../screens/admin/admin-tasks'
 import AdminAddStudent from '../../screens/admin/admin-add-student'
+import AdminScreenMessage from '../../screens/admin/admin-screen-message'
 
 export const routes = [
   {
@@ -91,18 +92,25 @@ export const routesAdmin = [
   {
     name: 'AdminMain',
     component: AdminMain,
-    isDelete: null
+    isDelete: null,
+    back: false,
+    isHeader: true
   },
   {
 
     name: 'AdminStudents',
     component: AdminStudents,
     title: 'Студенты',
-    isDelete: true
+    isDelete: true,
+    back: true,
+    isHeader: true
   },
   {
     name: 'AdminTeachers',
-    component: AdminTeachers
+    component: AdminTeachers,
+    isDelete: true,
+    back: true,
+    isHeader: true
   },
   {
     name: 'AdminTasks',
@@ -113,7 +121,18 @@ export const routesAdmin = [
     name: 'AdminAddStudent',
     component: AdminAddStudent,
     title: 'Новый студент',
-    isDelete: false
+    isDelete: false,
+    back: true,
+    isHeader: true
+  }
+  ,
+  {
+    name: 'AdminScreenMessage',
+    component: AdminScreenMessage,
+    title: '',
+    isDelete: false,
+    back: false,
+    isHeader: false
   }
 
 ]
