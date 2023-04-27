@@ -20,7 +20,6 @@ const AdminStudents = ({ navigation }) => {
     state.setActiveMode
   ])
   const { removeUser } = useRemoveUser()
-  const { userId } = useAddUser()
 
   const isFocused = useIsFocused()
   useEffect(() => {
@@ -68,7 +67,10 @@ const AdminStudents = ({ navigation }) => {
               </View>
               {activeDeleteMode && (
                 <AppButtonDeleteItem
-                  onPress={() => removeUser('students', userId)}
+                  onPress={() => {
+                    removeUser('students', item.userId)
+                    getData('students')
+                  }}
                 />
               )}
             </AppListItem>

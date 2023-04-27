@@ -50,7 +50,10 @@ const AdminTeachers = ({ navigation }) => {
               </View>
               {activeDeleteMode && (
                 <AppButtonDeleteItem
-                  onPress={() => removeUser(item.id, 'teachers')}
+                  onPress={() => {
+                    removeUser('teachers', item.userId)
+                    getData('teachers')
+                  }}
                 />
               )}
             </AppListItem>

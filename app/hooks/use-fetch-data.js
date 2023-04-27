@@ -14,11 +14,10 @@ export const useFetchData = () => {
     try {
       setLoading(true)
       const querySnapshot = await getDocs(collection(db, role))
-      querySnapshot.forEach(doc => {
-        const user = doc.data()
-        dataTemp.push(user)
-      })
+      querySnapshot.forEach(doc => 
+        dataTemp.push({userId:doc.id, ...doc.data()}))
       setData(dataTemp)
+
     } catch (e) {
       setError('Ошибка получения данных')
     } finally {
@@ -51,3 +50,4 @@ export const useFetchData = () => {
     setFullData
   }
 }
+ 

@@ -7,8 +7,6 @@ export const useRemoveUser = () => {
   const [loading, setLoading] = useState(false)
 
   const removeUser = async (role, userId) => {
-    console.log(role)
-    console.log(userId)
     try {
       const userRef = deleteDoc(doc(db, role, userId))
     } catch (e) {
