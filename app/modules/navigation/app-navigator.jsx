@@ -9,9 +9,13 @@ export const AppNavigator = () => {
   const { userRole } = useContext(AuthContext)
   return (
     <NavigationContainer>
-      {/*{userRole !== null && userRole === 'admin' ?*/}
-      {/*  <AdminStackNavigator /> : userRole !== null && userRole === 'user' ?*/}
-      {/*    <MainStackNavigator /> : <AuthStackNavigator />}*/}
+      {/*{userRole !== null && userRole === 'admin' ? (*/}
+      {/*  <AdminStackNavigator />*/}
+      {/*) : userRole !== null && userRole === 'user' ? (*/}
+      {/*  <MainStackNavigator />*/}
+      {/*) : (*/}
+      {/*  <AuthStackNavigator />*/}
+      {/*)}*/}
       <AdminStackNavigator />
     </NavigationContainer>
   )

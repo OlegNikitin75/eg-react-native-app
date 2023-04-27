@@ -9,66 +9,83 @@ import { AppButtonDeleteItem } from '../../components/ui/app-button-delete-item'
 import AdminAddStudent from './admin-add-student'
 import { useFetchData } from '../../hooks/use-fetch-data'
 import { Loader } from '../../components/loader/loader'
+import { useRemoveUser } from '../../hooks/use-remove-user'
+import { useAddUser } from '../../hooks/use-add-user'
 
 const AdminStudents = ({ navigation }) => {
-
-  const {
-    getData,
-    handleSearch,
-    userData,
-    error,
-    loading,
-    text
-  } = useFetchData()
+  const { getData, handleSearch, userData, error, loading, text } =
+    useFetchData()
+  const [activeDeleteMode, setActiveMode] = useDeleteStore(state => [
+    state.activeDeleteMode,
+    state.setActiveMode
+  ])
+  const { removeUser } = useRemoveUser()
+  const { userId } = useAddUser()
 
   const isFocused = useIsFocused()
   useEffect(() => {
-    getData('students').then(() => {
-      console.log('Данные получены')
-    })
+    if (activeDeleteMode) {
+      setActiveMode()
+    }
+    getData('students').then(() => {})
   }, [isFocused])
 
-  const [activeDeleteMode] = useDeleteStore(state => [state.activeDeleteMode])
-
   return (
-    <View className='relative bg-bgColor flex-1 p-3'>
+    <View className="relative bg-bgColor flex-1 p-3">
       {loading && <Loader />}
       {error && <FieldError>{error}</FieldError>}
       <AppField
-        placeholder='Найти студента'
+        placeholder="Найти студента"
         value={text}
-        onChangeText={(text) =>
-          handleSearch(text)
-        }
+        onChangeText={text => handleSearch(text)}
       >
-        <View className='absolute left-3 top-3.5 z-10'>
+        <View className="absolute left-3 top-3.5 z-10">
           <UserSvgComponent />
         </View>
-
       </AppField>
-      <View className='py-3 flex-auto'>
+      <View className="py-3 flex-auto">
         <FlatList
           data={userData}
-          renderItem={({ item }) =>
+          renderItem={({ item }) => (
             <AppListItem>
               <View>
-                <Text style={{ fontFamily: 'Play-Bold' }}
-                      className='text-whiteColor text-lg'>{`${item.lastName} ${item.firstName}`}</Text>
-                <Text style={{ fontFamily: 'Play-Regular' }} className='text-whiteColor text-base'>({item.group})</Text>
-                <Text style={{ fontFamily: 'Play-Regular' }}
-                      className='text-mediumGreyColor text-sm'>{item.password}</Text>
+                <Text
+                  style={{ fontFamily: 'Play-Bold' }}
+                  className="text-whiteColor text-lg"
+                >{`${item.lastName} ${item.firstName}`}</Text>
+                <Text
+                  style={{ fontFamily: 'Play-Regular' }}
+                  className="text-whiteColor text-base"
+                >
+                  ({item.group})
+                </Text>
+                <Text
+                  style={{ fontFamily: 'Play-Regular' }}
+                  className="text-mediumGreyColor text-sm"
+                >
+                  {item.password}
+                </Text>
               </View>
-              {activeDeleteMode && <AppButtonDeleteItem />}
-            </AppListItem>}
+              {activeDeleteMode && (
+                <AppButtonDeleteItem
+                  onPress={() => removeUser('students', userId)}
+                />
+              )}
+            </AppListItem>
+          )}
           keyExtractor={item => item.password}
         />
       </View>
-      <View className='mt-auto'>
-        <AppButtonOption name='Добавить студента' bg='bg-primary' color='text-black' height='h-16'
-                         onPress={() => navigation.navigate('AdminAddStudent')} />
+      <View className="mt-auto">
+        <AppButtonOption
+          name="Добавить студента"
+          bg="bg-primary"
+          color="text-black"
+          height="h-16"
+          onPress={() => navigation.navigate('AdminAddStudent')}
+        />
       </View>
     </View>
-
   )
 }
 

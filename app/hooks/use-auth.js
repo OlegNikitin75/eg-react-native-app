@@ -18,34 +18,32 @@ export const useAuth = () => {
   const getData = async (role, nameMod, passwordMod) => {
     try {
       setLoading(true)
-      const querySnapshot = await getDocs(collection(db, 'users'))
-      querySnapshot.forEach((doc) => {
-        const users = doc.data()[role]
-        users.forEach(user => {
-          const fullName = `${user.firstName} ${user.lastName}`.toLowerCase().trim()
-          if (fullName === nameMod && user.password === passwordMod) {
-            if (role === 'teachers' || 'students') {
-              login('user')
-            }
-            if (role === 'admin') {
-              login('admin')
-            }
-            setName('')
-            setPassword('')
-          } else {
-            setError('Вы ввели неправильное имя или пароль')
-            closeError()
+      const querySnapshot = await getDocs(collection(db, role))
+      querySnapshot.forEach(doc => {
+        const user = doc.data()
+        const fullNameUser = `${user.firstName} ${user.lastName}`
+          .toLowerCase()
+          .trim()
+        if (fullNameUser === nameMod && user.password === passwordMod) {
+          if (role === 'teachers' || role === 'students') {
+            login('user')
           }
-        })
+          if (role === 'admin') {
+            login('admin')
+          }
+          setName('')
+          setPassword('')
+        } else {
+          setError('Вы ввели неправильное имя или пароль')
+          closeError()
+        }
       })
     } catch (e) {
       setError('Что-то пошло не так. Повторите попытку')
-
     } finally {
       setLoading(false)
     }
   }
-
 
   const handleLogin = () => {
     if (name && password) {
@@ -55,15 +53,15 @@ export const useAuth = () => {
       const roleIndex = passwordMod[0]
       switch (roleIndex) {
         case 'a':
-          getData('admin', nameMod, passwordMod).then(res => {
+          getData('admin', nameMod, passwordMod).then(() => {
           })
           break
         case 't':
-          getData('teachers', nameMod, passwordMod).then(res => {
+          getData('teachers', nameMod, passwordMod).then(() => {
           })
           break
         case 's':
-          getData('students', nameMod, passwordMod).then(res => {
+          getData('students', nameMod, passwordMod).then(() => {
           })
           break
         default:

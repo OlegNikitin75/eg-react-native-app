@@ -10,10 +10,10 @@ export const useSetNameAdmin = () => {
   const setName = async () => {
     try {
       setLoading(true)
-      const querySnapshot = await getDocs(collection(db, 'users'))
-      querySnapshot.forEach((doc) => {
-        const admin = doc.data().admin
-        const adminFullName = `${admin[0].firstName} ${admin[0].lastName}`
+      const querySnapshot = await getDocs(collection(db, 'admin'))
+      querySnapshot.forEach(doc => {
+        const admin = doc.data()
+        const adminFullName = `${admin.firstName} ${admin.lastName}`
         setNameAdmin(adminFullName)
       })
     } catch (e) {
@@ -21,8 +21,6 @@ export const useSetNameAdmin = () => {
     } finally {
       setLoading(false)
     }
-
-
   }
   return { nameAdmin, loading, setName, error }
 }
